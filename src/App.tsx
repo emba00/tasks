@@ -6,9 +6,14 @@ import kaido from "./images/kaido.png";
 function App(): JSX.Element {
     return (
         <div className="App">
-            <h1 className="App-header" style={{ backgroundColor: "lightblue" }}>
+            <header
+                className="App-header"
+                style={{ backgroundColor: "lightblue" }}
+            ></header>
+            <h1 style={{ backgroundColor: "lightblue" }}>
                 Cisc275 w/ Emmanuel Mbah and The Weakest Yonko
             </h1>
+
             <img src={kaido} alt="KAIDOOOOO" width="250" height="150" />
             <ul>
                 <li>1st</li>

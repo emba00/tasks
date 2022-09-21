@@ -5,7 +5,17 @@
  * the number twice.
  */
 export function bookEndList(numbers: number[]): number[] {
-    return numbers;
+    if (numbers.length == 0) {
+        return numbers;
+    } else if (numbers.length == 1) {
+        const newnumbers = [...numbers, ...numbers];
+        return newnumbers;
+    } else {
+        const firstlast = [10, 4];
+        firstlast.splice(0, 1, numbers[0]);
+        firstlast.splice(1, 1, numbers[numbers.length - 1]);
+        return firstlast;
+    }
 }
 
 /**
@@ -13,7 +23,8 @@ export function bookEndList(numbers: number[]): number[] {
  * number has been tripled (multiplied by 3).
  */
 export function tripleNumbers(numbers: number[]): number[] {
-    return numbers;
+    const triply = numbers.map((ele: number): number => ele * 3);
+    return triply;
 }
 
 /**
@@ -21,7 +32,11 @@ export function tripleNumbers(numbers: number[]): number[] {
  * the number cannot be parsed as an integer, convert it to 0 instead.
  */
 export function stringsToIntegers(numbers: string[]): number[] {
-    return [];
+    let toint = numbers.map((ele: string): number => parseInt(ele));
+    toint = toint.map((ele: number): number =>
+        isNaN(ele) == true ? (ele = 0) : ele
+    );
+    return toint;
 }
 
 /**
@@ -32,7 +47,15 @@ export function stringsToIntegers(numbers: string[]): number[] {
  */
 // Remember, you can write functions as lambdas too! They work exactly the same.
 export const removeDollars = (amounts: string[]): number[] => {
-    return [];
+    let nodolla = [...amounts];
+    nodolla = nodolla.map((ele: string): string =>
+        ele.startsWith("$") == true ? ele.replace("$", "") : ele
+    );
+    let toint = nodolla.map((ele: string): number => parseInt(ele));
+    toint = toint.map((ele: number): number =>
+        isNaN(ele) == true ? (ele = 0) : ele
+    );
+    return toint;
 };
 
 /**
@@ -41,7 +64,11 @@ export const removeDollars = (amounts: string[]): number[] => {
  * in question marks ("?").
  */
 export const shoutIfExclaiming = (messages: string[]): string[] => {
-    return [];
+    let loud = messages.map((ele: string): string =>
+        ele.endsWith("!") == true ? ele.toUpperCase() : ele
+    );
+    loud = loud.filter((ele: string): boolean => !ele.endsWith("?"));
+    return loud;
 };
 
 /**
@@ -49,7 +76,8 @@ export const shoutIfExclaiming = (messages: string[]): string[] => {
  * 4 letters long.
  */
 export function countShortWords(words: string[]): number {
-    return 0;
+    words = words.filter((ele: string): boolean => ele.length < 4);
+    return words.length;
 }
 
 /**
@@ -58,7 +86,15 @@ export function countShortWords(words: string[]): number {
  * then return true.
  */
 export function allRGB(colors: string[]): boolean {
-    return false;
+    const colorsrgb = colors.filter(
+        (ele: string): boolean =>
+            ele == "red" || ele == "blue" || ele == "green"
+    );
+    if (colorsrgb.length == colors.length || colors.length == 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 /**
@@ -69,7 +105,21 @@ export function allRGB(colors: string[]): boolean {
  * And the array [] would become "0=0".
  */
 export function makeMath(addends: number[]): string {
-    return "";
+    if (addends.length == 0) {
+        const nothing = "0=0";
+        return nothing;
+    }
+    const sum = addends.reduce(
+        (current: number, num: number) => current + num,
+        0
+    );
+    let mademath = addends.map((ele: number): string => ele.toString());
+    mademath = mademath.map((ele: string): string =>
+        mademath.indexOf(ele) != addends.length - 1 ? ele + "+" : ele
+    );
+    let mathmade = sum + "=" + mademath;
+    mathmade = mathmade.replaceAll(",", "");
+    return mathmade;
 }
 
 /**
@@ -82,5 +132,23 @@ export function makeMath(addends: number[]): string {
  * And the array [1, 9, 7] would become [1, 9, 7, 17]
  */
 export function injectPositive(values: number[]): number[] {
-    return [];
+    const coolarr = [...values];
+    const firstneg = coolarr.findIndex((ele: number): boolean => ele < 0);
+    if (firstneg != -1) {
+        const coolerarr = coolarr.filter(
+            (ele: number): boolean => coolarr.indexOf(ele) < firstneg
+        );
+        const sum = coolerarr.reduce(
+            (current: number, num: number) => current + num,
+            0
+        );
+        coolarr.splice(firstneg + 1, 0, sum);
+    } else {
+        const sum = coolarr.reduce(
+            (current: number, num: number) => current + num,
+            0
+        );
+        coolarr.push(sum);
+    }
+    return coolarr;
 }

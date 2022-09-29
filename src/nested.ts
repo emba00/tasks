@@ -1,7 +1,3 @@
-import { isTypeParameterDeclaration } from "typescript";
-import { urlToHttpOptions } from "url";
-import { resourceLimits } from "worker_threads";
-import { Z_ASCII } from "zlib";
 import { Answer } from "./interfaces/answer";
 import { Question, QuestionType } from "./interfaces/question";
 import { duplicateQuestion } from "./objects";

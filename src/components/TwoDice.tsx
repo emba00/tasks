@@ -1,3 +1,4 @@
+import { readlinkSync } from "fs";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -12,5 +13,26 @@ export function d6(): number {
 }
 
 export function TwoDice(): JSX.Element {
-    return <div>Two Dice</div>;
+    const [ldie, setLdie] = useState<number>(5);
+    const [rdie, setRdie] = useState<number>(2);
+    function match(): number {
+        let res = 15;
+        ldie == rdie ? (res = 2) : res;
+        ldie == 1 && ldie == rdie ? (res = 1) : res;
+        return res;
+    }
+    return (
+        <div>
+            <span data-testid="left-die">
+                ldie
+                <Button onClick={() => setLdie(d6())}> Roll Left </Button>
+                {ldie} {match() == 2 && <div>You Win!</div>}
+            </span>
+            <span data-testid="right-die">
+                rdie
+                <Button onClick={() => setRdie(d6())}> Roll Right </Button>
+                {rdie} {match() == 1 && <div>You Lose :(</div>}
+            </span>
+        </div>
+    );
 }

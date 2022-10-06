@@ -1,4 +1,4 @@
-import { readlinkSync } from "fs";
+//import { readlinkSync } from "fs";
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 
@@ -17,8 +17,11 @@ export function TwoDice(): JSX.Element {
     const [rdie, setRdie] = useState<number>(2);
     function match(): number {
         let res = 15;
-        ldie == rdie ? (res = 2) : res;
-        ldie == 1 && ldie == rdie ? (res = 1) : res;
+        if (ldie == rdie && ldie != 1) {
+            res = 2;
+        } else if (ldie == rdie && ldie == 1) {
+            res = 1;
+        }
         return res;
     }
     return (

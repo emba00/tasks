@@ -280,7 +280,10 @@ export function editOption(
     targetOptionIndex: number,
     newOption: string
 ): Question[] {
-    let diffques = [...questions];
+    const difflist = [...questions];
+    let diffques = difflist.map(
+        (ques: Question): Question => ({ ...ques, options: [...ques.options] })
+    );
     if (targetOptionIndex == -1) {
         diffques = diffques.map(
             (ele: Question): Question =>
@@ -294,6 +297,7 @@ export function editOption(
                     ? { ...ele, options: [newOption] }
                     : ele
         );
+        return diffques;
     } else {
         const indy = questions.findIndex(
             (ele: Question): boolean => ele.id == targetId
@@ -304,11 +308,9 @@ export function editOption(
             (ele: Question): Question =>
                 ele.id == targetId ? { ...ele, options: imparray } : ele
         );
-        if (diffques[indy].options[2] == "newspaper") {
-            diffques[indy].options[0] = "red";
-        }
+        return diffques;
     }
-    return diffques;
+    //return diffques;
 }
 
 /***

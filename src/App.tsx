@@ -12,18 +12,13 @@ import { DoubleHalf } from "./bad-components/DoubleHalf";
 import { ColoredBox } from "./bad-components/ColoredBox";
 import { ShoveBox } from "./bad-components/ShoveBox";
 import { ChooseTeam } from "./bad-components/ChooseTeam";
-
 function App(): JSX.Element {
     return (
         <div className="App">
-            <header
-                className="App-header"
-                style={{ backgroundColor: "lightblue" }}
-            ></header>
-            <h1 style={{ backgroundColor: "lightblue" }}>
+            <header className="App-header">
                 Cisc275 w/ Emmanuel Mbah and The Weakest Yonko
-            </h1>
-
+            </header>
+            <h1> HEADERRRRRRR </h1>
             <img src={kaido} alt="KAIDOOOOO" width="250" height="150" />
             <ul>
                 <li>1st</li>
@@ -50,7 +45,8 @@ function App(): JSX.Element {
                 automatically reload.
             </p>
             <hr></hr>
-            {/* <DoubleHalf></DoubleHalf> */}
+            <DoubleHalf></DoubleHalf>
+            <p></p>
             <hr></hr>
             <ChooseTeam></ChooseTeam>
             <hr></hr>
@@ -72,5 +68,4 @@ function App(): JSX.Element {
         </div>
     );
 }
-
 export default App;
